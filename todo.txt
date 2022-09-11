@@ -1,0 +1,5 @@
+update.ts
+zmień branie od rito puuid z nazwe na branie z bazy
+
+wr.ts
+możliwość wybrania nazwy
