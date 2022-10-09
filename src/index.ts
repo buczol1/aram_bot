@@ -19,7 +19,7 @@ else{
 }
 
 if(process.env.API_KEY){
-	apiKey = process.env.API_KEY;	
+	apiKey = process.env.API_KEY;e	
 }
 else{
 	throw new Error("API_KEY environment variable is not set");
