@@ -32,7 +32,7 @@ module.exports = {
                     yield interaction.reply('Przywoływacz nie jest zarejestrowany, użyj /register **nazwa przywoływacza**');
                     console.log(err);
                 }
-                else if (results[0] !== []) {
+                else if (results[0].length !== 0) {
                     for (let i = 0; i < results.length; i++) {
                         if (results[i].win) {
                             wins++;

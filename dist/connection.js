@@ -36,7 +36,8 @@ exports.db = mysql_1.default.createConnection({
     host: host,
     user: user,
     password: password,
-    database: database
+    database: database,
+    port: 3307
 });
 exports.db.connect(function (err) {
     if (err)
