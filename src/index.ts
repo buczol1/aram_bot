@@ -18,8 +18,8 @@ else{
 	throw new Error("PORT environment variable is not set");
 }
 
-if(process.env.API_KEY){
-	apiKey = process.env.API_KEY;e	
+if(process.env.API_KEYE){
+	apiKey = process.env.API_KEYE;	
 }
 else{
 	throw new Error("API_KEY environment variable is not set");
