@@ -34,19 +34,19 @@ module.exports = {
     execute(interaction) {
         return __awaiter(this, void 0, void 0, function* () {
             let sumName = interaction.options.getString('summoner');
-            let sql = 'SELECT summoner_name FROM registered_users WHERE summoner_name LIKE "' + sumName + '";';
+            let sql = 'SELECT summoner_name FROM users WHERE summoner_name LIKE "' + sumName + '";';
             let query = connection_1.db.query(sql, (err, result) => __awaiter(this, void 0, void 0, function* () {
                 if ((result[0] && sumName !== result[0].summoner_name) || !result[0]) {
                     const getSummonerByName = encodeURI('https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + sumName + '?api_key=' + apiKey);
                     const fetch_repsonse = yield (0, node_fetch_1.default)(getSummonerByName);
                     const body = yield fetch_repsonse.json();
                     if (fetch_repsonse.status === 200) {
-                        let summBody = { puuid: body.puuid, summoner_id: body.id, summoner_name: body.name };
-                        let summsql = 'INSERT INTO registered_users SET ?';
+                        let summBody = { summoner_name: body.name, summoner_id: body.id, puuid: body.puuid };
+                        let summsql = 'INSERT INTO users SET ?';
                         let summquery = connection_1.db.query(summsql, summBody, (err, result) => __awaiter(this, void 0, void 0, function* () {
                             if (err)
                                 throw err;
-                            yield interaction.reply('Zarejestrowano');
+                            yield interaction.reply('Zarejestrowano ' + sumName);
                         }));
                     }
                     else {
