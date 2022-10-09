@@ -39,7 +39,8 @@ export const db = mysql.createConnection({
     host: host,
     user: user,
     password: password,
-    database: database
+    database: database,
+    port: 3307
 });
 
 db.connect(function(err) {
