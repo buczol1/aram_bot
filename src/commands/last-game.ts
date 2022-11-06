@@ -28,11 +28,12 @@ module.exports = {
 		let name: string = interaction.options.getString('nazwa');
 		const sql = 'SELECT puuid FROM users WHERE summoner_name LIKE "'+name+'";';
 		let query = db.query(sql, async (err, results) => {
+			console.log(results);
 			if(err){
 				await interaction.reply('Przywoływacz nie jest zarejestrowany, użyj /register **nazwa przywoływacza**');
 				console.log(err);
 			}
-			else if(results[0].length !== 0){
+			else if(results.length !== 0){
 				let puuid: string = results[0].puuid;
 				const getLastGameID: string = encodeURI('https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/'+puuid+'/ids?queue=450&start=0&count=1&api_key='+apiKey);
 				const fetchGameID = await fetch(getLastGameID);
@@ -151,6 +152,9 @@ module.exports = {
 					throw new Error("Status code:"+fetchGameID.status);
 					return 'Błąd przy pobieraniu danych historii: ' + fetchGameID.status;
 				}
+			}
+			else{
+				await interaction.reply('Przywoływacz nie jest zarejestrowany, użyj /register **nazwa przywoływacza**');
 			}
 		});
 	},
