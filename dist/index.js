@@ -20,12 +20,6 @@ const discord_js_1 = require("discord.js");
 let port, apiKey, discordToken;
 var alreadyInDatabase = false;
 dotenv_1.default.config();
-if (process.env.PORT) {
-    port = parseInt(process.env.PORT);
-}
-else {
-    throw new Error("PORT environment variable is not set");
-}
 if (process.env.API_KEY) {
     apiKey = process.env.API_KEY;
 }
