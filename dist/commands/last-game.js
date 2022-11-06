@@ -34,7 +34,7 @@ module.exports = {
     execute(interaction) {
         return __awaiter(this, void 0, void 0, function* () {
             let name = interaction.options.getString('nazwa');
-            const sql = 'SELECT puuid FROM users WHERE summoner_name IS "' + name + '";';
+            const sql = 'SELECT puuid FROM users WHERE summoner_name LIKE "' + name + '";';
             let query = connection_1.db.query(sql, (err, results) => __awaiter(this, void 0, void 0, function* () {
                 if (err) {
                     yield interaction.reply('Przywoływacz nie jest zarejestrowany, użyj /register **nazwa przywoływacza**');
