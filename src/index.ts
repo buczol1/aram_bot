@@ -11,12 +11,6 @@ var alreadyInDatabase: boolean = false;
 
 dotenv.config();
 
-if(process.env.PORT){
-	port = parseInt(process.env.PORT);	
-}
-else{
-	throw new Error("PORT environment variable is not set");
-}
 
 if(process.env.API_KEY){
 	apiKey = process.env.API_KEY;	
