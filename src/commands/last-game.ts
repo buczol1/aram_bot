@@ -26,7 +26,7 @@ module.exports = {
 				.setRequired(true)),
 	async execute(interaction: any) {
 		let name: string = interaction.options.getString('nazwa');
-		const sql = 'SELECT puuid FROM users WHERE summoner_name IS "'+name+'";';
+		const sql = 'SELECT puuid FROM users WHERE summoner_name LIKE "'+name+'";';
 		let query = db.query(sql, async (err, results) => {
 			if(err){
 				await interaction.reply('Przywoływacz nie jest zarejestrowany, użyj /register **nazwa przywoływacza**');
