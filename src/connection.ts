@@ -1,6 +1,6 @@
 import mysql from 'mysql';
 import dotenv from 'dotenv';
-let host: string, user: string, password: string, database: string;
+let host: string, user: string, password: string, database: string, dbPort: number;
 
 dotenv.config();
 
@@ -35,12 +35,19 @@ else{
     throw new Error("DATABASE environment variable is not set");
 }
 
+if(process.env.DBPORT){
+    dbPort = parseInt(process.env.DBPORT);
+}
+else{
+    throw new Error("DBPORT environment variable is not set");
+}
+
 export const db = mysql.createConnection({
     host: host,
     user: user,
     password: password,
     database: database,
-    port: 3306
+    port: dbPort
 });
 
 db.connect(function(err) {

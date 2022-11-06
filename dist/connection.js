@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.db = void 0;
 const mysql_1 = __importDefault(require("mysql"));
 const dotenv_1 = __importDefault(require("dotenv"));
-let host, user, password, database;
+let host, user, password, database, dbPort;
 dotenv_1.default.config();
 if (process.env.HOST) {
     host = process.env.HOST;
@@ -32,12 +32,18 @@ if (process.env.DATABASE) {
 else {
     throw new Error("DATABASE environment variable is not set");
 }
+if (process.env.DBPORT) {
+    dbPort = parseInt(process.env.DBPORT);
+}
+else {
+    throw new Error("DBPORT environment variable is not set");
+}
 exports.db = mysql_1.default.createConnection({
     host: host,
     user: user,
     password: password,
     database: database,
-    port: 3306
+    port: dbPort
 });
 exports.db.connect(function (err) {
     if (err)
